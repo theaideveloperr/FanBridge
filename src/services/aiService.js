@@ -1,0 +1,229 @@
+import stadiumData from '../data/stadiumData.json';
+
+/* ─── Language Map ─── */
+export const LANGUAGE_NAMES = {
+  en: 'English',
+  es: 'Español',
+  pt: 'Português',
+  hi: 'हिन्दी',
+};
+
+/**
+ * Helper to match and extract exact stadiumData entries referenced in a question or response text
+ */
+export function extractSources(text, question = '') {
+  const combined = `${question} ${text}`.toLowerCase();
+  const sources = new Set();
+
+  stadiumData.sections.forEach(sec => {
+    if (combined.includes(`section ${sec.id}`) || combined.includes(`sección ${sec.id}`) || combined.includes(`seção ${sec.id}`) || combined.includes(`${sec.id}`)) {
+      sources.add(`Section ${sec.id} (Level ${sec.level})`);
+      const gate = stadiumData.gates.find(g => g.id === sec.nearestGate);
+      if (gate) sources.add(`${gate.name}`);
+    }
+  });
+
+  stadiumData.gates.forEach(gate => {
+    const gateLetter = gate.id.toLowerCase();
+    if (combined.includes(`gate ${gateLetter}`) || combined.includes(`puerta ${gateLetter}`) || combined.includes(`portão ${gateLetter}`)) {
+      sources.add(gate.name);
+    }
+  });
+
+  stadiumData.amenities.forEach(amenity => {
+    const nameLower = amenity.name.toLowerCase();
+    if (combined.includes(nameLower) || (combined.includes('medical') && amenity.type === 'medical') || (combined.includes('restroom') && amenity.type.includes('restroom'))) {
+      sources.add(amenity.name);
+    }
+  });
+
+  if (sources.size === 0) {
+    sources.add(`${stadiumData.stadiumName} Directory`);
+  }
+
+  return Array.from(sources);
+}
+
+/**
+ * Helper to resolve free-text location against shared stadiumData.json
+ */
+export function resolveLocationFromData(rawLocationText) {
+  if (!rawLocationText) return 'Unconfirmed location';
+  const text = rawLocationText.toLowerCase();
+
+  const secMatch = text.match(/section\s*(\d+)|sección\s*(\d+)|seção\s*(\d+)/i);
+  if (secMatch) {
+    const secId = secMatch[1] || secMatch[2] || secMatch[3];
+    const sec = stadiumData.sections.find(s => s.id === secId);
+    if (sec) {
+      const g = stadiumData.gates.find(gate => gate.id === sec.nearestGate);
+      return `Section ${sec.id} (Near ${g ? g.name : 'Gate ' + sec.nearestGate})`;
+    }
+  }
+
+  const gateMatch = text.match(/gate\s*([a-h])|puerta\s*([a-h])|portão\s*([a-h])/i);
+  if (gateMatch) {
+    const gId = (gateMatch[1] || gateMatch[2] || gateMatch[3]).toUpperCase();
+    const gate = stadiumData.gates.find(g => g.id === gId);
+    if (gate) return gate.name;
+  }
+
+  for (const amenity of stadiumData.amenities) {
+    if (text.includes(amenity.name.toLowerCase())) {
+      return `${amenity.name} (Gate ${amenity.nearestGate})`;
+    }
+  }
+
+  return 'Unconfirmed location';
+}
+
+/* ─── Fan Mode: Generate stadium navigation via Proxy Server ─── */
+export async function generateFanResponse(question, language = 'en', accessibilityMode = false) {
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question, language, accessibilityMode }),
+    });
+
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn('Proxy server request failed, utilizing client fallback:', err);
+  }
+
+  return generateMockFanResponse(question, language, accessibilityMode);
+}
+
+/* ─── Staff Mode: Triage incident via Proxy Server ─── */
+export async function triageIncident(incidentText) {
+  try {
+    const res = await fetch('/api/triage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ incidentText }),
+    });
+
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn('Proxy server triage request failed, utilizing client fallback:', err);
+  }
+
+  return generateMockTriage(incidentText);
+}
+
+/* ─── Staff Mode: Generate situation summary via Proxy Server ─── */
+export async function generateSituationSummary(incidents) {
+  try {
+    const res = await fetch('/api/summary', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ incidents }),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      return data.summary;
+    }
+  } catch (err) {
+    console.warn('Proxy server summary request failed, utilizing client fallback:', err);
+  }
+
+  return generateMockSummary(incidents);
+}
+
+/* ─── Client Fallback Generators ─── */
+
+function generateMockFanResponse(question, language = 'en', accessibilityMode = false) {
+  const q = question.toLowerCase();
+  const langName = LANGUAGE_NAMES[language] || 'English';
+
+  const unknownGateMatch = q.match(/gate\s*([i-z])|puerta\s*([i-z])|portão\s*([i-z])/i);
+  if (unknownGateMatch) {
+    const fakeLetter = (unknownGateMatch[1] || unknownGateMatch[2] || unknownGateMatch[3]).toUpperCase();
+    const unknownResponses = {
+      en: `⚠️ I do not have information for **Gate ${fakeLetter}** in the stadium directory for ${stadiumData.stadiumName}. Valid gates are **Gates A through H**.`,
+      es: `⚠️ No tengo información para la **Puerta ${fakeLetter}** en el directorio del estadio ${stadiumData.stadiumName}. Las puertas válidas son de la **A a la H**.`,
+      pt: `⚠️ Não tenho informações sobre o **Portão ${fakeLetter}** no diretório do ${stadiumData.stadiumName}. Os portões válidos são de **A a H**.`,
+      hi: `⚠️ मेरे पास ${stadiumData.stadiumName} के डेटाबेस में **गेट ${fakeLetter}** की जानकारी नहीं है। केवल गेट A से H तक उपलब्ध हैं।`,
+    };
+    return {
+      text: unknownResponses[language] || unknownResponses.en,
+      respondedLanguage: langName,
+      sources: [`Unrecognized Entry (${fakeLetter})`],
+    };
+  }
+
+  const sectionMatch = q.match(/section\s*(\d+)|sección\s*(\d+)|seção\s*(\d+)/i);
+  const sectionId = sectionMatch ? (sectionMatch[1] || sectionMatch[2] || sectionMatch[3]) : null;
+
+  if (sectionId) {
+    const section = stadiumData.sections.find(s => s.id === sectionId);
+    if (section) {
+      const gate = stadiumData.gates.find(g => g.id === section.nearestGate);
+
+      let accessNote = '';
+      if (accessibilityMode) {
+        if (gate.accessible) {
+          accessNote = {
+            en: `\n\n♿ **Accessibility Route**: Gate ${gate.id} is fully step-free with elevator access to Level ${section.level}. Accessible restrooms are available inside Gate ${gate.id}.`,
+            es: `\n\n♿ **Ruta Accesible**: La Puerta ${gate.id} es totalmente libre de escalones con acceso en ascensor al Nivel ${section.level}. Hay baños accesibles dentro de la Puerta ${gate.id}.`,
+            pt: `\n\n♿ **Rota Acessível**: O Portão ${gate.id} é totalmente sem degraus, com elevador para o Nível ${section.level}. Banheiros acessíveis disponíveis no Portão ${gate.id}.`,
+            hi: `\n\n♿ **सुलभ मार्ग**: गेट ${gate.id} पूरी तरह से सीढ़ी-मुक्त है और स्तर ${section.level} के लिए लिफ्ट की सुविधा उपलब्ध है।`,
+          }[language] || '';
+        } else {
+          accessNote = {
+            en: `\n\n♿ **Accessibility Route**: Gate ${gate.id} has stairs. Please use **Gate A - North (Accessible)** for step-free ramp and elevator access to Section ${section.id}.`,
+            es: `\n\n♿ **Ruta Accesible**: La Puerta ${gate.id} tiene escaleras. Utilice la **Puerta A - Norte (Accesible)** para rampas y elevadores sin escalones.`,
+            pt: `\n\n♿ **Rota Acessível**: O Portão ${gate.id} tem escadas. Use o **Portão A - Norte (Acessível)** para rampas e elevadores.`,
+            hi: `\n\n♿ **सुलभ मार्ग**: गेट ${gate.id} में सीढ़ियां हैं। कृपया सीढ़ी-मुक्त पहुंच के लिए **गेट A - उत्तर (सुलभ)** का उपयोग करें।`,
+          }[language] || '';
+        }
+      }
+
+      const responses = {
+        en: `📍 **Section ${section.id}** is located on the **${section.level} Level** (Seats ${section.seatRange}).\n\n**Directions:**\n1. Proceed to **${gate.name}**\n2. Scan ticket at Main Concourse\n3. Take stairs/elevators to ${section.level} Level\n4. Look for aisle signs for Section ${section.id}${accessNote}`,
+        es: `📍 **Sección ${section.id}** está ubicada en el **Nivel ${section.level === 'Lower' ? 'Inferior' : 'Superior'}** (Asientos ${section.seatRange}).\n\n**Instrucciones:**\n1. Diríjase a **${gate.name}**\n2. Escanee su entrada en la entrada principal\n3. Tome las escaleras/ascensores hacia el Nivel ${section.level === 'Lower' ? 'Inferior' : 'Superior'}\n4. Siga las señales hacia la Sección ${section.id}${accessNote}`,
+        pt: `📍 **Seção ${section.id}** está localizada no **Nível ${section.level === 'Lower' ? 'Inferior' : 'Superior'}** (Assentos ${section.seatRange}).\n\n**Instruções:**\n1. Vá até o **${gate.name}**\n2. Valide seu ingresso na entrada principal\n3. Suba/desça para o Nível ${section.level === 'Lower' ? 'Inferior' : 'Superior'}\n4. Siga as placas até a Seção ${section.id}${accessNote}`,
+        hi: `📍 **सेक्शन ${section.id}** **${section.level === 'Lower' ? 'निचले' : 'ऊपरी'} स्तर** (सीटें ${section.seatRange}) पर स्थित है।\n\n**दिशा-निर्देश:**\n1. **${gate.name}** की ओर जाएं\n2. मुख्य प्रवेश द्वार पर टिकट स्कैन करें\n3. ${section.level === 'Lower' ? 'निचले' : 'ऊपरी'} स्तर के लिए मार्ग लें\n4. सेक्शन ${section.id} के संकेतों का पालन करें${accessNote}`,
+      };
+
+      return {
+        text: responses[language] || responses.en,
+        respondedLanguage: langName,
+        sources: [`${gate.name}`, `Section ${section.id} (${section.level} Level)`],
+      };
+    }
+  }
+
+  const defaultText = {
+    en: `Welcome to **${stadiumData.stadiumName}**! 🏟️\n\nI can provide directions to sections, gates, medical stations, restrooms, and food stands.`,
+    es: `¡Bienvenido a **${stadiumData.stadiumName}**! 🏟️\n\nPuedo darte indicaciones para llegar a secciones, puertas, puestos médicos, baños y comida.`,
+    pt: `Bem-vindo ao **${stadiumData.stadiumName}**! 🏟️\n\nPosso fornecer direções para seções, portões, estações médicas, banheiros e lanchonetes.`,
+    hi: `**${stadiumData.stadiumName}** में आपका स्वागत है! 🏟️\n\nमैं आपको सेक्शन, गेट, चिकित्सा केंद्र, और शौचालयों के रास्ते बता सकता हूं।`,
+  }[language] || defaultText.en;
+
+  return {
+    text: defaultText,
+    respondedLanguage: langName,
+    sources: [`${stadiumData.stadiumName} Directory`],
+  };
+}
+
+function generateMockTriage(incidentText) {
+  const matchedLocation = resolveLocationFromData(incidentText);
+  return {
+    category: 'facilities',
+    priority: 'low',
+    location: matchedLocation,
+    matchedLocation: matchedLocation,
+    summary: `Incident reported at ${matchedLocation}.`,
+  };
+}
+
+function generateMockSummary(incidents) {
+  return `${incidents.length} active incident(s) currently monitored by staff.`;
+}

@@ -1,0 +1,52 @@
+{
+  "stadiumName": "Continental Arena",
+  "gates": [
+    { "id": "A", "name": "Gate A - North", "opensTo": ["101-120"], "accessible": true },
+    { "id": "B", "name": "Gate B - North", "opensTo": ["121-140"], "accessible": false },
+    { "id": "C", "name": "Gate C - East", "opensTo": ["201-220"], "accessible": true },
+    { "id": "D", "name": "Gate D - East", "opensTo": ["221-240"], "accessible": false },
+    { "id": "E", "name": "Gate E - South", "opensTo": ["301-320"], "accessible": true },
+    { "id": "F", "name": "Gate F - South", "opensTo": ["321-340"], "accessible": false },
+    { "id": "G", "name": "Gate G - West", "opensTo": ["401-420"], "accessible": true },
+    { "id": "H", "name": "Gate H - West", "opensTo": ["421-440"], "accessible": false }
+  ],
+  "sections": [
+    { "id": "101", "seatRange": "1-38", "nearestGate": "A", "level": "Lower" },
+    { "id": "108", "seatRange": "1-42", "nearestGate": "A", "level": "Upper" },
+    { "id": "118", "seatRange": "1-40", "nearestGate": "A", "level": "Lower" },
+    { "id": "125", "seatRange": "1-36", "nearestGate": "B", "level": "Lower" },
+    { "id": "132", "seatRange": "1-40", "nearestGate": "B", "level": "Upper" },
+    { "id": "201", "seatRange": "1-38", "nearestGate": "C", "level": "Lower" },
+    { "id": "210", "seatRange": "1-42", "nearestGate": "C", "level": "Upper" },
+    { "id": "214", "seatRange": "1-35", "nearestGate": "C", "level": "Lower" },
+    { "id": "225", "seatRange": "1-40", "nearestGate": "D", "level": "Lower" },
+    { "id": "233", "seatRange": "1-36", "nearestGate": "D", "level": "Upper" },
+    { "id": "301", "seatRange": "1-38", "nearestGate": "E", "level": "Lower" },
+    { "id": "310", "seatRange": "1-44", "nearestGate": "E", "level": "Upper" },
+    { "id": "318", "seatRange": "1-40", "nearestGate": "E", "level": "Lower" },
+    { "id": "325", "seatRange": "1-36", "nearestGate": "F", "level": "Lower" },
+    { "id": "334", "seatRange": "1-42", "nearestGate": "F", "level": "Upper" },
+    { "id": "401", "seatRange": "1-38", "nearestGate": "G", "level": "Lower" },
+    { "id": "412", "seatRange": "1-40", "nearestGate": "G", "level": "Upper" },
+    { "id": "425", "seatRange": "1-36", "nearestGate": "H", "level": "Lower" },
+    { "id": "434", "seatRange": "1-42", "nearestGate": "H", "level": "Upper" }
+  ],
+  "amenities": [
+    { "type": "restroom", "name": "Restroom - Gate A", "nearestGate": "A", "accessible": false },
+    { "type": "restroom_accessible", "name": "Accessible Restroom - North", "nearestGate": "A", "accessible": true },
+    { "type": "medical", "name": "First Aid Station - North", "nearestGate": "B", "accessible": true },
+    { "type": "food", "name": "Concession Stand - North", "nearestGate": "B", "accessible": false },
+    { "type": "restroom", "name": "Restroom - Gate C", "nearestGate": "C", "accessible": false },
+    { "type": "restroom_accessible", "name": "Accessible Restroom - East", "nearestGate": "C", "accessible": true },
+    { "type": "medical", "name": "First Aid Station - East", "nearestGate": "D", "accessible": true },
+    { "type": "food", "name": "Concession Stand - East", "nearestGate": "C", "accessible": false },
+    { "type": "restroom", "name": "Restroom - Gate E", "nearestGate": "E", "accessible": false },
+    { "type": "restroom_accessible", "name": "Accessible Restroom - South", "nearestGate": "E", "accessible": true },
+    { "type": "medical", "name": "First Aid Station - South", "nearestGate": "F", "accessible": true },
+    { "type": "food", "name": "Concession Stand - South", "nearestGate": "F", "accessible": false },
+    { "type": "restroom", "name": "Restroom - Gate G", "nearestGate": "G", "accessible": false },
+    { "type": "restroom_accessible", "name": "Accessible Restroom - West", "nearestGate": "G", "accessible": true },
+    { "type": "medical", "name": "First Aid Station - West", "nearestGate": "H", "accessible": true },
+    { "type": "food", "name": "Concession Stand - West", "nearestGate": "H", "accessible": false }
+  ]
+}

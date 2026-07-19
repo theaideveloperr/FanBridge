@@ -16,35 +16,6 @@
 [![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com/)
 
-[![GitHub Stars](https://img.shields.io/github/stars/theaideveloperr/FanBridge?style=flat-square)](https://github.com/theaideveloperr/FanBridge/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/theaideveloperr/FanBridge?style=flat-square)](https://github.com/theaideveloperr/FanBridge/network/members)
-[![GitHub Issues](https://img.shields.io/github/issues/theaideveloperr/FanBridge?style=flat-square)](https://github.com/theaideveloperr/FanBridge/issues)
-[![Last Commit](https://img.shields.io/github/last-commit/theaideveloperr/FanBridge?style=flat-square)](https://github.com/theaideveloperr/FanBridge/commits/main)
-[![Repo Size](https://img.shields.io/github/repo-size/theaideveloperr/FanBridge?style=flat-square)](https://github.com/theaideveloperr/FanBridge)
-
-<img src="https://img.shields.io/badge/Status-Active-success?style=flat-square" />
-<img src="https://img.shields.io/badge/Version-v1.0-blue?style=flat-square" />
-<img src="https://img.shields.io/badge/License-Hackathon-orange?style=flat-square" />
-<img src="https://img.shields.io/badge/Made%20with-❤️-red?style=flat-square" />
-
-</div>
-
-## 📊 GitHub Stats
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=theaideveloperr&show_icons=true&theme=tokyonight&hide_border=true" width="48%" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=theaideveloperr&theme=tokyonight&hide_border=true" width="48%" />
-</p>
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=theaideveloperr&layout=compact&theme=tokyonight&hide_border=true" width="45%" />
-</p>
-
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=theaideveloperr&repo=FanBridge&label=Repository%20Views&color=0e75b6&style=for-the-badge" />
-</p>
-
-
 
 > **Built for Google PromptWars 2026**
 >

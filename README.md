@@ -5,32 +5,47 @@
 
 # ⚽ FanBridge
 
-### AI-Powered Stadium Intelligence Platform
+### AI-Powered Stadium Intelligence Platform for FIFA World Cup 2026
 
-![Google PromptWars](https://img.shields.io/badge/Google-PromptWars%202026-4285F4?style=flat-square&logo=google&logoColor=white)
-![Google Gemini](https://img.shields.io/badge/Google-Gemini%202.0%20Flash-8E75B2?style=flat-square&logo=google&logoColor=white)
-![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-38BDF8?style=flat-square&logo=tailwind-css&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES2023-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?style=flat-square&logo=netlify&logoColor=white)
+[![Google PromptWars](https://img.shields.io/badge/Google-PromptWars%202026-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
+[![Built with Gemini](https://img.shields.io/badge/Built%20with-Google%20Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/gemini-api)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com/)
+
+[![GitHub Stars](https://img.shields.io/github/stars/theaideveloperr/FanBridge?style=flat-square)](https://github.com/theaideveloperr/FanBridge/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/theaideveloperr/FanBridge?style=flat-square)](https://github.com/theaideveloperr/FanBridge/network/members)
+[![GitHub Issues](https://img.shields.io/github/issues/theaideveloperr/FanBridge?style=flat-square)](https://github.com/theaideveloperr/FanBridge/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/theaideveloperr/FanBridge?style=flat-square)](https://github.com/theaideveloperr/FanBridge/commits/main)
+[![Repo Size](https://img.shields.io/github/repo-size/theaideveloperr/FanBridge?style=flat-square)](https://github.com/theaideveloperr/FanBridge)
+
+<img src="https://img.shields.io/badge/Status-Active-success?style=flat-square" />
+<img src="https://img.shields.io/badge/Version-v1.0-blue?style=flat-square" />
+<img src="https://img.shields.io/badge/License-Hackathon-orange?style=flat-square" />
+<img src="https://img.shields.io/badge/Made%20with-❤️-red?style=flat-square" />
 
 </div>
 
-![Status](https://img.shields.io/badge/Status-Active-success?style=flat-square)
-![Version](https://img.shields.io/badge/Version-1.0-blue?style=flat-square)
-![License](https://img.shields.io/badge/License-Hackathon-orange?style=flat-square)
-![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=flat-square)
+## 📊 GitHub Stats
 
-![Visitors](https://komarev.com/ghpvc/?username=theaideveloperr&repo=FanBridge&style=flat-square&color=blue)
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=theaideveloperr&show_icons=true&theme=tokyonight&hide_border=true" width="48%" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=theaideveloperr&theme=tokyonight&hide_border=true" width="48%" />
+</p>
 
-![Built with React](https://img.shields.io/badge/Built%20with-React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
-![Powered by Gemini](https://img.shields.io/badge/Powered%20by-Google%20Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white)
-![AI Powered](https://img.shields.io/badge/AI-Powered-purple?style=for-the-badge)
-![FIFA 2026](https://img.shields.io/badge/FIFA-World%20Cup%202026-0057B8?style=for-the-badge)
-![PromptWars](https://img.shields.io/badge/Google-PromptWars-red?style=for-the-badge&logo=google)
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=theaideveloperr&layout=compact&theme=tokyonight&hide_border=true" width="45%" />
+</p>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=theaideveloperr&repo=FanBridge&label=Repository%20Views&color=0e75b6&style=for-the-badge" />
+</p>
+
+
+
 > **Built for Google PromptWars 2026**
 >
 > **Challenge Theme:** FIFA World Cup 2026 – GenAI for Stadium Operations & Fan Experience

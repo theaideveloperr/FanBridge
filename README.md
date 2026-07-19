@@ -1,11 +1,14 @@
 # ⚽ FanBridge
 ### AI-Powered Stadium Intelligence Platform
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Built%20for-Google%20PromptWars%202026-0B6E4F?style=for-the-badge" alt="PromptWars 2026" />
-  <img src="https://img.shields.io/badge/Powered%20by-Google%20Gemini-D4AF37?style=for-the-badge" alt="Gemini" />
-  <img src="https://img.shields.io/badge/Status-Live%20Demo-brightgreen?style=for-the-badge" alt="Status" />
-</p>
+![Google PromptWars](https://img.shields.io/badge/Google-PromptWars%202026-4285F4?style=for-the-badge&logo=google)
+![Built with Gemini](https://img.shields.io/badge/Built%20with-Gemini_AI-8E75B2?style=for-the-badge&logo=google)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite)
+![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-38BDF8?style=for-the-badge&logo=tailwindcss)
+![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?style=for-the-badge&logo=netlify)
 
 > **Built for Google PromptWars 2026**
 >

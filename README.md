@@ -1,14 +1,14 @@
 # ⚽ FanBridge
 ### AI-Powered Stadium Intelligence Platform
 
+# ⚽ FanBridge
+
 ![Google PromptWars](https://img.shields.io/badge/Google-PromptWars%202026-4285F4?style=for-the-badge&logo=google)
-![Built with Gemini](https://img.shields.io/badge/Built%20with-Gemini_AI-8E75B2?style=for-the-badge&logo=google)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite)
-![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js)
-![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-38BDF8?style=for-the-badge&logo=tailwindcss)
-![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?style=for-the-badge&logo=netlify)
+![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js)
+![Gemini AI](https://img.shields.io/badge/Google-Gemini_AI-4285F4?style=for-the-badge&logo=google)
+![License](https://img.shields.io/badge/License-Hackathon-success?style=for-the-badge)
 
 > **Built for Google PromptWars 2026**
 >
